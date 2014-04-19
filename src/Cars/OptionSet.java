@@ -48,11 +48,6 @@ public class OptionSet {
 		return 0;
 	}
 
-	/**
-	 * setOption(int i, String name, int price): void + getOption(name: String):
-	 * Option + getOptionPrice(name: String): int − findOption(name: String):
-	 * int
-	 **/
 
 	@Override
 	public String toString() {
