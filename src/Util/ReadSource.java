@@ -8,46 +8,15 @@ import Cars.OptionSet;
 import Cars.OptionSet.Option;
 
 public class ReadSource {
+	Automotive a = null;
 
-	/**
-	 * Reads text from a file line by line
-	 */
-	public void readFromFile(String filename) {
+	public Automotive readFromFileToArray(String filename) {
 
-		BufferedReader bufferedReader = null;
-
-		try {
-
-			// Construct the BufferedReader object
-			bufferedReader = new BufferedReader(new FileReader(filename));
-
-			String line = null;
-
-			while ((line = bufferedReader.readLine()) != null) {
-				// Process the data, here we just print it out
-				System.out.println(line);
-			}
-
-		} catch (FileNotFoundException ex) {
-			ex.printStackTrace();
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		}
-		// Close the BufferedReader
-		try {
-			if (bufferedReader != null)
-				bufferedReader.close();
-		} catch (IOException ex) {
-			System.out.println("Error -- " + ex.toString());
-		}
-	}
-
-	public void readFromFileToArray(String filename) {
 		try {
 			BufferedReader bufferedReader = null;
 			bufferedReader = new BufferedReader(new FileReader(filename));
 			String line = null;
-			Automotive a = new Automotive();
+			a = new Automotive();
 			a.setName("Ford");
 			a.setBasicPrice(1000);
 			OptionSet[] opset = new OptionSet[5];
@@ -57,23 +26,24 @@ public class ReadSource {
 			int cost = 0;
 			int optionCount = 0, optionSetCount = 0;
 			while ((line = bufferedReader.readLine()) != null) {
-				System.out.println("line="+line);
+				// System.out.println("line="+line);
 				if (!line.contains(":")) {
 					continue;
 				}
 				StringTokenizer st = new StringTokenizer(line, ":");
 				String s = st.nextToken();
 				if ((s).equals("keys")) {
-					System.out.println("***creating optionset");
+					// System.out.println("optionset");
+					// System.out.println("---------");
 					ops = new OptionSet();
 					ops.setName(st.nextToken());
 					count = Integer.parseInt(st.nextToken().trim());
 					op = new Option[count];
 					ops.setOption(op);
 					opset[optionSetCount++] = ops;
-					optionCount=0;
+					optionCount = 0;
 				} else if (!(s).equals("keys")) {
-					System.out.println("***creating option");
+					// System.out.println("***creating option");
 					OptionSet.Option o = new OptionSet().new Option();
 					o.setName(s);
 					cost = Integer.parseInt(st.nextToken().trim());
@@ -82,63 +52,50 @@ public class ReadSource {
 				}
 
 			}
-			print(opset);
+			// print(opset);
+			a.setOptionSet(opset);
+			System.out.println(a);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
+		return a;
 
-		/**
-		 * BufferedReader bufferedReader = null;
-		 * 
-		 * try {
-		 * 
-		 * // Construct the BufferedReader object bufferedReader = new
-		 * BufferedReader(new FileReader(filename));
-		 * 
-		 * String line = null; OptionSet[] optionset = new OptionSet[5];
-		 * 
-		 * // Process the data, here we just print it out
-		 * 
-		 * 
-		 * int count = 1;
-		 * 
-		 * while ((line = bufferedReader.readLine()) != null) {
-		 * 
-		 * // System.out.println(j); StringTokenizer st = new
-		 * StringTokenizer(line, ":"); // String sID = st.nextToken();
-		 * OptionSet.Option ops = new OptionSet().new Option(); String s =
-		 * st.nextToken(); if ((s).equals("keys")) { OptionSet opset = new
-		 * OptionSet(); opset.setName(st.nextToken());
-		 * System.out.println(opset.getName()); String strTotal =
-		 * st.nextToken(); count = Integer.parseInt(strTotal.trim());
-		 * System.out.println(count); optionset[i] = new
-		 * OptionSet(opset.getName(), count); //
-		 * System.out.println(optionset[i]); break; } else if
-		 * (!(s).equals("keys")) { for(int j=0;j<count;j++){ Option[] op = new
-		 * Option[count]; // System.out.println(op); ops.setName(s);
-		 * System.out.println(ops.getName()); int cost =
-		 * Integer.parseInt(st.nextToken().trim()); ops.setCost(cost);
-		 * System.out.println(ops.getCost()); op[j] = new OptionSet().new
-		 * Option(ops.getName(),ops.getCost()); } } } }
-		 * 
-		 * print(optionset); } catch (Exception ex) { ex.printStackTrace(); } //
-		 * Close the BufferedReader try { if (bufferedReader != null)
-		 * bufferedReader.close(); } catch (IOException ex) {
-		 * System.out.println("Error -- " + ex.toString()); }
-		 **/
 	}
 
-	private void print(OptionSet[] optionsetarray) {
-		for (int i = 0; i < optionsetarray.length; i++) {
-			System.out.println("***OptionSet" + i);
-			OptionSet optionSet2 = optionsetarray[i];
-			System.out.println(optionSet2.getName());
-			Option[] op = optionSet2.getOption();
-			for (int j = 0; j < op.length; j++) {
-				Option option = op[j];
-				System.out.println(option.getName() + "," + option.getCost());
-			}
+	public void serializeAuto(Automotive a) {
+		try {
+			FileOutputStream fileOut = new FileOutputStream(
+					"X:\\Radha\\car-config\\src\\auto.ser");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(a);
+			out.close();
+			fileOut.close();
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+	}
+
+	public Automotive DeserializeAuto(String fileName) {
+		try {
+			FileInputStream fileIn = new FileInputStream(fileName);
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			a = (Automotive) in.readObject();
+			in.close();
+			fileIn.close();
+		} catch (IOException i) {
+			i.printStackTrace();
+
+		} catch (ClassNotFoundException c) {
+			c.printStackTrace();
+		}
+
+		return a;
+
 	}
 
 	/**
@@ -147,7 +104,6 @@ public class ReadSource {
 	 */
 	public static void main(String[] args) {
 		ReadSource obj = new ReadSource();
-		// obj.readFromFile("X:\\Radha\\car-config\\src\\FordZTW.txt");
 		obj.readFromFileToArray("X:\\Radha\\car-config\\src\\FordZTW.txt");
 	}
 

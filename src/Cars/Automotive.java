@@ -2,7 +2,9 @@ package Cars;
 
 import java.util.Arrays;
 
-public class Automotive {
+import Cars.OptionSet.Option;
+
+public class Automotive  implements java.io.Serializable {
 	String name;
 	OptionSet[] opSet;
 	int basicPrice;
@@ -38,6 +40,25 @@ public class Automotive {
 
 	public void setBasicPrice(int basicPrice) {
 		this.basicPrice = basicPrice;
+	}
+
+	public void print() {
+		System.out.println("Name: "+getName());
+		OptionSet[] optionSet = getOptionSet();
+		for (int i = 0; i < getOptionSet().length; i++) {
+			System.out.println();
+			System.out.println("OptionSet" + i);
+			System.out.println("-------------");
+			OptionSet optionSet2 = optionSet[i];
+			System.out.println(optionSet2.getName());
+			System.out.println("-----------------");
+			Option[] op = optionSet2.getOption();
+			for (int j = 0; j < op.length; j++) {
+				Option option = op[j];
+				System.out.println(option.getName() + "," + option.getCost());
+
+			}
+		}
 	}
 
 	@Override

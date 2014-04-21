@@ -2,7 +2,7 @@ package Cars;
 
 import java.util.Arrays;
 
-public class OptionSet {
+public class OptionSet implements java.io.Serializable{
 	String name;
 	Option[] option;
 
@@ -59,7 +59,7 @@ public class OptionSet {
 				+ Arrays.toString(option) + "]";
 	}
 
-	public class Option {
+	public class Option  implements java.io.Serializable{
 		String name;
 		int cost;
 
@@ -88,6 +88,12 @@ public class OptionSet {
 		public void setCost(int cost) {
 			this.cost = cost;
 		}
+
+		@Override
+		public String toString() {
+			return "Option [name=" + name + ", cost=" + cost + "]";
+		}
+		
 
 	}
 
