@@ -4,14 +4,18 @@ import java.util.Arrays;
 
 public class OptionSet {
 	String name;
-	String[] options;
+	Option[] option;
 
 	public OptionSet() {
 
 	}
+	public OptionSet(String name){
+		this.name=name;
+	}
 
-	public OptionSet(String color, int count) {
-		this.name = color;
+	public OptionSet(String name, int count) {
+		this.name = name;
+		
 
 	}
 
@@ -23,12 +27,12 @@ public class OptionSet {
 		this.name = name;
 	}
 
-	public String[] getOptions() {
-		return options;
+	public Option[] getOption() {
+		return option;
 	}
 
-	public void setOptions(String[] options) {
-		this.options = options;
+	public void setOption(Option[] option) {
+		this.option = option;
 	}
 
 	public void setOption(int i, String name, int price) {
@@ -52,19 +56,19 @@ public class OptionSet {
 	@Override
 	public String toString() {
 		return "optionSet [color=" + name + ", options="
-				+ Arrays.toString(options) + "]";
+				+ Arrays.toString(option) + "]";
 	}
 
 	public class Option {
 		String name;
-		double cost;
+		int cost;
 
 		public Option() {
 
 		}
 
-		public Option(String name, double cost) {
-			super();
+		public Option(String name, int cost) {
+			
 			this.name = name;
 			this.cost = cost;
 		}
@@ -77,11 +81,11 @@ public class OptionSet {
 			this.name = name;
 		}
 
-		public double getCost() {
+		public int getCost() {
 			return cost;
 		}
 
-		public void setCost(double cost) {
+		public void setCost(int cost) {
 			this.cost = cost;
 		}
 
