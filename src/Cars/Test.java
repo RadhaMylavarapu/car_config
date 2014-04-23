@@ -61,14 +61,24 @@ public class Test {
 		// OptionSet[] optionSet = auto1.getOptionSet();
 		for (int i = 0; i < auto1.opSet.length; i++) {
 			if (optionSet[i].getName().equals("Color")) {
-
+				System.out
+						.println("Get OptionSet (by index value)  method takes the index value as a parameter and returns the optionset in that index if exits ,otherwise returns null ");
+				System.out.println(auto1.getOptionSet(2));
+				System.out
+						.println("Find OptionSet( with name) method takes optionSet name as aparameter and returns optionSet if exits ,oterwise returns null if not exits");
+				System.out.println(auto1.findOptionSet("color".trim()));
+				System.out.println(auto1.findOptionSet("Gear"));
+				System.out
+						.println("Find Option (with name) method takes option name as a parameter and returns option if exists,otherwise returns null if not exists");
+				System.out.println(auto1
+						.findOption("French Blue Clearcoat Metallic"));
 				System.out
 						.println("set values of Option(in the context of optionset) :");
 				System.out
 						.println("It takes the optionset,name of the option ,new option name and newprice as a parameter and setvalues for the option");
 
-				auto.setOption(optionSet[i], "French Blue Clearcoat Metallic",
-						"blue", 100);
+			//	auto.setOption(optionSet[i], "French Blue Clearcoat Metallic",
+					//	"blue", 100);
 				System.out.println();
 				System.out.println();
 
@@ -85,14 +95,15 @@ public class Test {
 						.getOptionPrice("French Blue Clearcoat Metallic"));
 				System.out.println();
 				System.out.println();
-				System.out.println(" findOption(String optionname) method takes optionname as parameter and  if it exit returns values oterwise returns null ");
+				System.out
+						.println(" findOption(String optionname) method takes optionname as parameter and  if it exit returns values oterwise returns null ");
 				ops.getClass();
 				Cars.OptionSet.Option option = auto1
 						.findOption("CD Silver Clearcoat Metallic".trim());
-				System.out.println("Option Details"+option);
-				Cars.OptionSet.Option option1 = auto1
-						.findOption("pandhi".trim());
-				System.out.println("Option Details"+option1);
+				System.out.println("Option Details" + option);
+				Cars.OptionSet.Option option1 = auto1.findOption("pandhi"
+						.trim());
+				System.out.println("Option Details" + option1);
 
 			}
 		}

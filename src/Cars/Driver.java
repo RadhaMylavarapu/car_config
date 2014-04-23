@@ -9,14 +9,16 @@ public class Driver {
 		Automotive FordZTW = readSource
 				.buildAutoObject("X:\\Radha\\car-config\\src\\FordZTW.txt");
 		// Print attributes before serialization
-		FordZTW.print();
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+		FordZTW.printOptionSet();
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 		// Serialize the object
 		readSource.serializeAuto(FordZTW);
 		// Deserialize the object and read it into memory.
 		Automotive newFordZTW = readSource
 				.DeserializeAuto("X:\\Radha\\car-config\\src\\auto.ser");
 		// Print new attributes.
-		newFordZTW.print();
+		// newFordZTW.print();
 
 	}
 }
