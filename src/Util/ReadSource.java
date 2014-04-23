@@ -10,15 +10,15 @@ import Cars.OptionSet.Option;
 public class ReadSource {
 	Automotive a = null;
 
-	public Automotive readFromFileToArray(String filename) {
+	public Automotive buildAutoObject(String filename) {
 
 		try {
 			BufferedReader bufferedReader = null;
 			bufferedReader = new BufferedReader(new FileReader(filename));
 			String line = null;
 			a = new Automotive();
-			a.setName("Ford");
-			a.setBasicPrice(1000);
+			a.setName(" Focus Wagon ZTW");
+			a.setBasicPrice(18445);
 			OptionSet[] opset = new OptionSet[5];
 			OptionSet ops = null;
 			Option[] op = null;
@@ -52,9 +52,8 @@ public class ReadSource {
 				}
 
 			}
-			// print(opset);
 			a.setOptionSet(opset);
-			System.out.println(a);
+			a.print();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
@@ -98,13 +97,5 @@ public class ReadSource {
 
 	}
 
-	/**
-	 * @param args
-	 *            the command line arguments
-	 */
-	public static void main(String[] args) {
-		ReadSource obj = new ReadSource();
-		obj.readFromFileToArray("X:\\Radha\\car-config\\src\\FordZTW.txt");
-	}
-
+	
 }
