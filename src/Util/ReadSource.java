@@ -9,50 +9,44 @@ import Cars.OptionSet.Option;
 
 public class ReadSource {
 	Automotive a = null;
-
+/**
+ * buildAutoObject() reads the data from the file to Automotive object
+ * @param filename
+ * @return
+ */
 	public Automotive buildAutoObject(String filename) {
 
 		try {
 			BufferedReader bufferedReader = null;
 			bufferedReader = new BufferedReader(new FileReader(filename));
 			String line = null;
-			a = new Automotive();
-			a.setName(" Focus Wagon ZTW");
-			a.setBasicPrice(18445);
-			OptionSet[] opset = new OptionSet[5];
-			OptionSet ops = null;
-			Option[] op = null;
+			a = new Automotive("Ford's Wagon ZTW", 5, 18445);
+
 			int count = 0;
 			int cost = 0;
 			int optionCount = 0, optionSetCount = 0;
 			while ((line = bufferedReader.readLine()) != null) {
-				// System.out.println("line="+line);
 				if (!line.contains(":")) {
 					continue;
 				}
+				String optionSetName = null;
 				StringTokenizer st = new StringTokenizer(line, ":");
 				String s = st.nextToken();
 				if ((s).equals("keys")) {
-					// System.out.println("optionset");
-					// System.out.println("---------");
-					ops = new OptionSet();
-					ops.setName(st.nextToken());
+					optionSetName = st.nextToken();
 					count = Integer.parseInt(st.nextToken().trim());
-					op = new Option[count];
-					ops.setOption(op);
-					opset[optionSetCount++] = ops;
+					a.setOptionSet(optionSetName, count, optionSetCount);
+					optionSetCount++;
 					optionCount = 0;
 				} else if (!(s).equals("keys")) {
-					// System.out.println("***creating option");
-					OptionSet.Option o = new OptionSet().new Option();
-					o.setName(s);
+
 					cost = Integer.parseInt(st.nextToken().trim());
-					o.setCost(cost);
-					op[optionCount++] = o;
+					a.setOption(optionSetName, s, cost, optionCount,
+							optionSetCount - 1, count);
+					optionCount++;
 				}
 
 			}
-			a.setOptionSet(opset);
 			a.print();
 		} catch (Exception ex) {
 			ex.printStackTrace();
@@ -60,7 +54,10 @@ public class ReadSource {
 		return a;
 
 	}
-
+/**
+ * serializeAuto() reads the data from the file to object
+ * @param a
+ */
 	public void serializeAuto(Automotive a) {
 		try {
 			FileOutputStream fileOut = new FileOutputStream(
@@ -79,6 +76,11 @@ public class ReadSource {
 		}
 	}
 
+	/**
+	 * reads the data from the object to file
+	 * @param fileName
+	 * @return
+	 */
 	public Automotive DeserializeAuto(String fileName) {
 		try {
 			FileInputStream fileIn = new FileInputStream(fileName);
@@ -97,5 +99,4 @@ public class ReadSource {
 
 	}
 
-	
 }

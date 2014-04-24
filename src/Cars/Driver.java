@@ -9,9 +9,8 @@ public class Driver {
 		Automotive FordZTW = readSource
 				.buildAutoObject("X:\\Radha\\car-config\\src\\FordZTW.txt");
 		// Print attributes before serialization
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-		FordZTW.printOptionSet();
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
+
+		FordZTW.print();
 		// Serialize the object
 		readSource.serializeAuto(FordZTW);
 		// Deserialize the object and read it into memory.

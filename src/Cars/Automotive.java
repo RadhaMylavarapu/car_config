@@ -10,9 +10,9 @@ import Cars.OptionSet.Option;
  * 
  */
 public class Automotive implements java.io.Serializable {
-	String name;
-	OptionSet[] opSet;
-	int basePrice;
+	private String name;
+	private OptionSet[] opSet;
+	private int basePrice;
 
 	public Automotive() {
 
@@ -33,6 +33,7 @@ public class Automotive implements java.io.Serializable {
 	}
 
 	public OptionSet[] getOptionSet() {
+		System.out.println(opSet);
 		return opSet;
 	}
 
@@ -93,10 +94,6 @@ public class Automotive implements java.io.Serializable {
 
 	public void setOptionSet(String optionSetName, int count, int index) {
 		opSet[index] = new OptionSet(optionSetName, count);
-		System.out.println("+++++++++++++++++++++");
-		System.out.println(opSet[index].getName());
-		System.out.println("+++++++++++++++++++++");
-
 	}
 
 	public void setBasicPrice(int basicPrice) {
@@ -111,42 +108,114 @@ public class Automotive implements java.io.Serializable {
 	 */
 	public void setOption(String optionSetName, String optionName, int cost,
 			int optionIndex, int optionSetIndex, int count) {
-		opSet[optionSetIndex] = new OptionSet(optionSetName, count);
+		// opSet[optionSetIndex] = new OptionSet(optionSetName, count);
 		opSet[optionSetIndex].setOption(optionIndex, optionName, cost);
 
 	}
 
-	/**
-	 * prints the optionset and option array
-	 */
-	public void printOptionSet() {
-		OptionSet[] OpSet = getOptionSet();
+	public void DeleteOptionSet(String optionSetName) {
 		for (int i = 0; i < opSet.length; i++) {
-			System.out.println(opSet[i].getName());
+			if ((optionSetName).equalsIgnoreCase(opSet[i].getName())) {
+				if (i < opSet.length - 1) {
+					opSet[i] = opSet[i + 1];
+					for (int j = i + 1; j < opSet.length - 1; j++) {
+						opSet[j] = opSet[j + 1];
+						break;
+					}
+				} else if (i == opSet.length - 1) {
+					opSet[i] = null;
+				}
+			}
 		}
-
+		
 	}
 
-	/**
-	 * public void print() { System.out.println("Name: "+getName()); OptionSet[]
-	 * opSet=getOptionSet(); System.out.println("Make:" + "FORD");
-	 * System.out.println("Name of the Model: " + getName()); for (int i = 0; i
-	 * < opSet.length; i++) { OptionSet optionSet = getOptionSet(i);
-	 * System.out.println(); System.out.println("OptionSet" + i); System.out
-	 * .println(
-	 * "------------------------------------------------------------------------------------------------------"
-	 * ); OptionSet optionSet2 = opSet[i]; System.out.printf("%23S %70s \n",
-	 * optionSet2.getName(), " cost"); System.out.printf("%23s %70s \n",
-	 * "-------------------------", "--------"); Option[] op =
-	 * optionSet.getOptions(); for (int j = 0; j < op.length; j++) { op[j] = new
-	 * OptionSet().new Option(); Option option = op[j];
-	 * System.out.println(op[j]);
-	 * 
-	 * System.out.println(option); System.out.printf("%-33s%61d \n",
-	 * option.getName(), option.getCost());
-	 * 
-	 * } } }
-	 **/
+	public void DeleteOption(String optionName) {
+		boolean deleted = false;
+		for (int i = 0; i < opSet.length; i++) {
+			OptionSet optionSet = getOptionSet(i);
+			System.out.println(optionSet.getName());
+			Option[] op = optionSet.getOptions();
+			// System.out.println();
+			for (int j = 0; j < op.length; j++) {
+				Option option = op[j];
+				if ((optionName).equalsIgnoreCase(option.getName())) {
+					if (j < op.length - 1) {
+						op[j] = op[j + 1];
+						op[j + 1] = null;
+						for (int k = j + 1; k < op.length - 1; k++) {
+							op[k] = op[k + 1];
+						}
+					} else if (j == op.length - 1) {
+						op[j] = null;
+					}
+					deleted = true;
+					break;
+				}
+			}
+			if (deleted) {
+				break;
+			}
+		}
+	
+	}
+
+	public void updateOptionSet(String optionSetName,String newoptionSetName) {
+
+		for (int i = 0; i < opSet.length; i++) {
+			if ((opSet[i].getName()).equalsIgnoreCase(optionSetName)) {
+				opSet[i].setName(newoptionSetName);
+				System.out.println(opSet[i].toString());
+			}
+
+		}
+	}
+
+	public void updateOption(String optionName,String newOptionName, int newcost) {
+		for (int i = 0; i < opSet.length; i++) {
+			OptionSet optionSet = getOptionSet(i);
+			Option[] op = optionSet.getOptions();
+			for (int j = 0; j < op.length; j++) {
+				Option option = op[j];
+				if ((optionName).equals(option.getName())) {
+					option.setName(newOptionName);
+					option.setCost(newcost);
+					System.out.println(option.toString());
+				}
+				
+			}
+			
+		}
+		
+	}
+
+	public void print() {
+		System.out.println("Name of the car: " + getName());
+		System.out.println("Car Make:" + "FORD");
+		System.out.println("Car Model: " + getName());
+		System.out.println("Basic Model price"+getBasicPrice());
+		for (int i = 0; i < opSet.length; i++) {
+			System.out.println();
+			System.out.println("OptionSet " + i);
+			System.out
+					.println("------------------------------------------------------------------------------------------------------");
+			OptionSet optionSet = opSet[i];
+			System.out.printf("%23S %70s \n", optionSet.getName(), " cost");
+			System.out.printf("%23s %70s \n", "-------------------------",
+					"--------");
+			Option[] op = optionSet.getOptions();
+			for (int j = 0; j < op.length; j++) {
+				Option option = op[j];
+				if (option == null) {
+					System.out.println("no option at " + j);
+					continue;
+				}
+				System.out.printf("%-33s%61d \n", option.getName(),
+						option.getCost());
+
+			}
+		}
+	}
 
 	@Override
 	public String toString() {
