@@ -50,16 +50,31 @@ no Moonroof                                                                     
 /n
 
 Get OptionSet (by index value)  method takes the index value as a parameter and returns the optionset in that index if exits ,otherwise returns null 
+
 optionSet [name=Brakes/Traction Control, options=[Option [name=Standard, cost=0], Option [name=ABS, cost=400], Option [name=ABS with Advance Trac, cost=1625]]]
 
 
 Find OptionSet( with name) method takes optionSet name as aparameter and returns optionSet if exits ,oterwise returns null if not exits
-optionSet [name=Color, options=[Option [name=Fort Knox Gold Clearcoat Metallic, cost=0], Option [name=Liquid Grey Clearcoat Metallic, cost=0], Option [name=Infra-Red Clearcoat, cost=0], Option [name=Grabber Green Clearcoat Metallic, cost=0], Option [name=Sangria Red Clearcoat Metallic, cost=0], Option [name=French Blue Clearcoat Metallic, cost=0], Option [name=Twilight Blue Clearcoat Metallic, cost=0], Option [name=CD Silver Clearcoat Metallic, cost=0], Option [name=Pitch Black Clearcoat, cost=0], Option [name=Cloud 9 White Clearcoat, cost=0]]]
+
+optionSet [name=Color, 
+options=[Option [name=Fort Knox Gold Clearcoat Metallic, cost=0],
+         Option [name=Liquid Grey Clearcoat Metallic, cost=0],
+         Option [name=Infra-Red Clearcoat, cost=0], 
+         Option [name=Grabber Green Clearcoat Metallic, cost=0], 
+         Option [name=Sangria Red Clearcoat Metallic, cost=0],
+         Option [name=French Blue Clearcoat Metallic, cost=0], 
+         Option [name=Twilight Blue Clearcoat Metallic, cost=0], 
+         Option [name=CD Silver Clearcoat Metallic, cost=0], 
+         Option [name=Pitch Black Clearcoat, cost=0],
+         Option [name=Cloud 9 White Clearcoat, cost=0]]]
+
+
 There is  no optionset with this name
 null
 
 
 Find Option (with name) method takes option name as a parameter and returns option if exists,otherwise returns null if not exists
+
 French Blue Clearcoat Metallic
 Color
 Option [name=French Blue Clearcoat Metallic, cost=0]
@@ -76,14 +91,27 @@ Option [name=Red, cost=200]
 
 
  findOption(String optionname) method takes optionname as parameter and  if it exit returns values oterwise returns null 
+
 CD Silver Clearcoat Metallic
 Color
-Option DetailsOption [name=CD Silver Clearcoat Metallic, cost=0]
+
+Option Details  Option [name=CD Silver Clearcoat Metallic, cost=0]
 Option Details=null
 
 
  findOptionSet(String optionSetname) method takes optionSetname as parameter and  if it exit returns values oterwise returns null 
-OptionSet details:optionSet [name=Color, options=[Option [name=Fort Knox Gold Clearcoat Metallic, cost=0], Option [name=Liquid Grey Clearcoat Metallic, cost=0], Option [name=Infra-Red Clearcoat, cost=0], Option [name=Red, cost=200], Option [name=Sangria Red Clearcoat Metallic, cost=0], Option [name=French Blue Clearcoat Metallic, cost=0], Option [name=Twilight Blue Clearcoat Metallic, cost=0], Option [name=CD Silver Clearcoat Metallic, cost=0], Option [name=Pitch Black Clearcoat, cost=0], Option [name=Cloud 9 White Clearcoat, cost=0]]]
+
+OptionSet details:optionSet [name=Color,
+                           options=[Option [name=Fort Knox Gold Clearcoat Metallic, cost=0], 
+                                    Option [name=Liquid Grey Clearcoat Metallic, cost=0],
+                                    Option [name=Infra-Red Clearcoat, cost=0], 
+                                    Option [name=Red, cost=200], 
+                                    Option [name=Sangria Red Clearcoat Metallic, cost=0],
+                                    Option [name=French Blue Clearcoat Metallic, cost=0],
+                                    Option [name=Twilight Blue Clearcoat Metallic, cost=0],
+                                    Option [name=CD Silver Clearcoat Metallic, cost=0], 
+                                    Option [name=Pitch Black Clearcoat, cost=0],
+                                    Option [name=Cloud 9 White Clearcoat, cost=0]]]
 
 
 findOptions() method in automotive class takes the option name as a parameter then find it and update 
@@ -91,14 +119,69 @@ Option [name=platinum, cost=50]
 
 
 findOptions() method in automotive class takes the option name as a parameter then find it and update 
-optionSet [name=colour, options=[Option [name=Fort Knox Gold Clearcoat Metallic, cost=0], Option [name=Liquid Grey Clearcoat Metallic, cost=0], Option [name=Infra-Red Clearcoat, cost=0], Option [name=Red, cost=200], Option [name=Sangria Red Clearcoat Metallic, cost=0], Option [name=French Blue Clearcoat Metallic, cost=0], Option [name=Twilight Blue Clearcoat Metallic, cost=0], Option [name=platinum, cost=50], Option [name=Pitch Black Clearcoat, cost=0], Option [name=Cloud 9 White Clearcoat, cost=0]]]
+
+optionSet [name=colour, options=[Option [name=Fort Knox Gold Clearcoat Metallic, cost=0], 
+                                 Option [name=Liquid Grey Clearcoat Metallic, cost=0],
+                                 Option [name=Infra-Red Clearcoat, cost=0],                                   
+                                 Option [name=Red, cost=200], 
+                                 Option [name=Sangria Red Clearcoat Metallic, cost=0],                                  Option [name=French Blue Clearcoat Metallic, cost=0],
+                                 Option [name=Twilight Blue Clearcoat Metallic, cost=0],
+                                 Option [name=platinum, cost=50],
+                                 Option [name=Pitch Black Clearcoat, cost=0], 
+                                 Option [name=Cloud 9 White Clearcoat, cost=0]]]
 
 
 DeleteOptionSet() takes the OptionSet Name as parameter and deletes it from records
-OptionSet Details:Automotive [name=Ford's Wagon ZTW, optionSet=[optionSet [name=colour, options=[Option [name=Fort Knox Gold Clearcoat Metallic, cost=0], Option [name=Liquid Grey Clearcoat Metallic, cost=0], Option [name=Infra-Red Clearcoat, cost=0], Option [name=Red, cost=200], Option [name=Sangria Red Clearcoat Metallic, cost=0], Option [name=French Blue Clearcoat Metallic, cost=0], Option [name=Twilight Blue Clearcoat Metallic, cost=0], Option [name=platinum, cost=50], Option [name=Pitch Black Clearcoat, cost=0], Option [name=Cloud 9 White Clearcoat, cost=0]]], optionSet [name=Brakes/Traction Control, options=[Option [name=Standard, cost=0], Option [name=ABS, cost=400], Option [name=ABS with Advance Trac, cost=1625]]], optionSet [name=Side Impact Air Bags, options=[Option [name=Air Bags, cost=350], Option [name=no Air Bags, cost=0]]], optionSet [name=Side Impact Air Bags, options=[Option [name=Air Bags, cost=350], Option [name=no Air Bags, cost=0]]], optionSet [name=Power Moonroof, options=[Option [name=Moonroof, cost=595], Option [name=no Moonroof, cost=0]]]]]
+
+OptionSet Details:Automotive [name=Ford's Wagon ZTW,
+                  optionSet=[optionSet [name=colour,
+                                        options=[Option [name=Fort Knox Gold Clearcoat Metallic, cost=0], 
+                                                 Option [name=Liquid Grey Clearcoat Metallic, cost=0], 
+                                                 Option [name=Infra-Red Clearcoat, cost=0], 
+                                                 Option [name=Red, cost=200],
+                                                 Option [name=Sangria Red Clearcoat Metallic, cost=0], 
+                                                 Option [name=French Blue Clearcoat Metallic, cost=0],
+                                                 Option [name=Twilight Blue Clearcoat Metallic, cost=0],
+                                                 Option [name=platinum, cost=50], 
+                                                 Option [name=Pitch Black Clearcoat, cost=0],
+                                                 Option [name=Cloud 9 White Clearcoat, cost=0]]], 
+                  optionSet [name=Brakes/Traction Control,
+                                         options=[Option [name=Standard, cost=0],
+                                                          Option [name=ABS, cost=400],
+                                                          Option [name=ABS with Advance Trac, cost=1625]]],
+                 optionSet [name=Side Impact Air Bags, 
+                                         options=[Option [name=Air Bags, cost=350],                                                   Option [name=no Air Bags, cost=0]]], 
+                  optionSet [name=Power Moonroof,
+                                         options=[Option [name=Moonroof, cost=595],
+                                                  Option [name=no Moonroof, cost=0]]]
+                  optionSet [null]
+                  ]
 
 
 DeleteOption() takes the Option Name as parameter and deletes it from records
 
-OptionSet Details:Automotive [name=Ford's Wagon ZTW, optionSet=[optionSet [name=colour, options=[Option [name=Fort Knox Gold Clearcoat Metallic, cost=0], Option [name=Liquid Grey Clearcoat Metallic, cost=0], Option [name=Infra-Red Clearcoat, cost=0], Option [name=Red, cost=200], Option [name=Sangria Red Clearcoat Metallic, cost=0], Option [name=French Blue Clearcoat Metallic, cost=0], Option [name=Twilight Blue Clearcoat Metallic, cost=0], Option [name=platinum, cost=50], Option [name=Pitch Black Clearcoat, cost=0], Option [name=Cloud 9 White Clearcoat, cost=0]]], optionSet [name=Brakes/Traction Control, options=[Option [name=Standard, cost=0], Option [name=ABS, cost=400], Option [name=ABS with Advance Trac, cost=1625]]], optionSet [name=Side Impact Air Bags, options=[Option [name=Air Bags, cost=350], null]], optionSet [name=Side Impact Air Bags, options=[Option [name=Air Bags, cost=350], null]], optionSet [name=Power Moonroof, options=[Option [name=Moonroof, cost=595], Option [name=no Moonroof, cost=0]]]]]
-                                                    OutPut for TestAutomotive class 
+OptionSet Details:Automotive [name=Ford's Wagon ZTW,
+ optionSet=[optionSet [name=colour, options=[Option [name=Fort Knox Gold Clearcoat Metallic, cost=0],
+                                             Option [name=Liquid Grey Clearcoat Metallic, cost=0],
+                                             Option [name=Infra-Red Clearcoat, cost=0], Option [name=Red, cost=200], 
+                                             Option [name=Sangria Red Clearcoat Metallic, cost=0], 
+                                             Option [name=French Blue Clearcoat Metallic, cost=0],
+                                             Option [name=Twilight Blue Clearcoat Metallic, cost=0],
+                                             Option [name=platinum, cost=50], 
+                                             Option [name=Pitch Black Clearcoat, cost=0],
+                                             Option [name=Cloud 9 White Clearcoat, cost=0]]],
+            optionSet [name=Brakes/Traction Control, 
+                                    options=[Option [name=Standard, cost=0], 
+                                             Option [name=ABS, cost=400], 
+                                             Option [name=ABS with Advance Trac, cost=1625]]],
+            optionSet [name=Side Impact Air Bags, 
+                                    options=[Option [name=Air Bags, cost=350], null]], 
+           
+            optionSet [name=Power Moonroof,
+                                    options=[Option [name=Moonroof, cost=595],
+                                             Option [name=no Moonroof, cost=0]]]]]
+                                                    OutPut for TestAutomotive class ,
+            OptiomSet [name=null]
+            
+            
+           

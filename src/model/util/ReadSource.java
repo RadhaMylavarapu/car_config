@@ -1,17 +1,22 @@
-package Util;
+package model.util;
 
-import java.io.*;
-
-
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
-import cars.Automotive;
-
+import model.Automobile;
+import exception.ExceptionLogging;
 import exception.FixProblems;
 
-
 public class ReadSource {
-	Automotive a = null;
+	Automobile a = null;
 
 	/**
 	 * buildAutoObject() reads the data from the file to Automotive object
@@ -21,13 +26,13 @@ public class ReadSource {
 	 * @throws FileNotFoundException
 	 * @throws FixProblems
 	 */
-	public Automotive buildAutoObject(String filename) throws FixProblems {
+	public Automobile buildAutoObject(String filename) throws FixProblems {
 
 		try {
 			BufferedReader bufferedReader = null;
 			bufferedReader = new BufferedReader(new FileReader(filename));
 			String line = null;
-			a = new Automotive("Ford's Wagon ZTW", 5, 18445);
+			a = new Automobile("Ford's Wagon ZTW", 5, 18445);
 
 			int count = 0;
 			int cost = 0;
@@ -46,23 +51,30 @@ public class ReadSource {
 					optionSetCount++;
 					optionCount = 0;
 				} else if (!(s).equals("keys")) {
-
 					cost = Integer.parseInt(st.nextToken().trim());
 					a.setOption(optionSetName, s, cost, optionCount,
 							optionSetCount - 1, count);
 					optionCount++;
+                   
 				}
 
 			}
 			a.print();
 		} catch (FileNotFoundException ex) {
-			throw new FixProblems(101, ex.getMessage());
-		} catch (NumberFormatException e) {
-			throw new FixProblems(102, e.getMessage());
-		} catch (IOException e) {
-			throw new FixProblems(103, e.getMessage());
-		} catch (Exception e) {
-			throw new FixProblems(999, e.getMessage());
+			System.out.println("101");
+			throw new FixProblems(101);
+		}// catch (NumberFormatException e) {
+			//System.out.println("102");
+			//throw new FixProblems(102);
+		//}
+		catch (NoSuchElementException e) {
+			System.out.println("==================");
+			throw new FixProblems();
+		}
+		catch (IOException e) {
+			System.out.println("103");
+			ExceptionLogging.log();
+			throw new FixProblems(108);
 		}
 		return a;
 
@@ -73,7 +85,7 @@ public class ReadSource {
 	 * 
 	 * @param a
 	 */
-	public void serializeAuto(Automotive a) {
+	public void serializeAuto(Automobile a) {
 		try {
 			FileOutputStream fileOut = new FileOutputStream(
 					"X:\\Radha\\car-config\\src\\auto.ser");
@@ -97,11 +109,11 @@ public class ReadSource {
 	 * @param fileName
 	 * @return
 	 */
-	public Automotive DeserializeAuto(String fileName) {
+	public Automobile DeserializeAuto(String fileName) {
 		try {
 			FileInputStream fileIn = new FileInputStream(fileName);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
-			a = (Automotive) in.readObject();
+			a = (Automobile) in.readObject();
 			in.close();
 			fileIn.close();
 		} catch (IOException i) {

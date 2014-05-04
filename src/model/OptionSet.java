@@ -1,6 +1,10 @@
-package Cars;
+package model;
 
 import java.util.Arrays;
+
+import exception.FixProblems;
+
+
 
 /**
  * 
@@ -33,7 +37,7 @@ public class OptionSet implements java.io.Serializable {
 		option = new Option[count];
 	}
 
-	protected String getName() {
+	protected String getName() throws FixProblems {
 		return name;
 	}
 
@@ -42,7 +46,6 @@ public class OptionSet implements java.io.Serializable {
 	}
 
 	protected Option[] getOptions() {
-		System.out.println(option.toString());
 		return option;
 	}
 
@@ -60,7 +63,7 @@ public class OptionSet implements java.io.Serializable {
 	protected void setOption(int i, String optionName, int optionprice) {
 		if (i < (option.length)) {
 			option[i] = new Option(optionName, optionprice);
-			System.out.println(option[i].getName());
+			// System.out.println(option[i].getName());
 			// option[i].setCost(optionprice);
 		}
 		// System.out.println("option :"+option);
@@ -75,34 +78,43 @@ public class OptionSet implements java.io.Serializable {
 	 */
 	protected Option getOption(String optionName) {
 		Option[] op = getOptions();
-		for (int j = 0; j < op.length; j++) {
-			String s = op[j].getName();
-			Option option = op[j];
+		int index = findOption(optionName);
+		if (index != 0 && index < op.length) {
+			String s = op[index].getName();
+			Option option = op[index];
 			if ((optionName).equalsIgnoreCase(s)) {
-				return op[j];
+				return op[index];
 			}
 		}
 		return null;
 	}
 
 	/**
-	 * It takes option name as an argument and returns the value or cost for the
-	 * option
+	 * for (int j = 0; j < op.length; j++) { String s = op[j].getName(); Option
+	 * option = op[j]; if ((optionName).equalsIgnoreCase(s)) { return op[j]; } }
+	 * return null; }
+	 * 
+	 * /** It takes option name as an argument and returns the value or cost for
+	 * the option
 	 * 
 	 * @param name
 	 * @return
 	 */
 	protected int getOptionPrice(String optionName) {
 		Option[] op = getOptions();
-		for (int j = 0; j < op.length; j++) {
-			Option option = op[j];
-			if ((optionName).equals(option.getName())) {
-				System.out.println(option.getName() + "cost:");
-				int cost = option.getCost();
-				return cost;
-			}
+		int index = findOption(optionName);
+		if (index >= 0 && index < op.length) {
+			int cost = op[index].getCost();
+			return cost;
+		} else {
+			return 0;
 		}
-		return 0;
+		/**
+		 * Option[] op = getOptions(); for (int j = 0; j < op.length; j++) {
+		 * Option option = op[j]; if ((optionName).equals(option.getName())) {
+		 * System.out.println(option.getName() + "cost:"); int cost =
+		 * option.getCost(); return cost; } } return 0;
+		 **/
 	}
 
 	/**
@@ -173,3 +185,4 @@ public class OptionSet implements java.io.Serializable {
 	}
 
 }
+

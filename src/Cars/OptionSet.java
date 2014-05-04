@@ -1,4 +1,4 @@
-package Cars;
+package cars;
 
 import java.util.Arrays;
 
@@ -14,11 +14,11 @@ public class OptionSet implements java.io.Serializable {
 	/**
 	 * constructor
 	 */
-	protected OptionSet() {
+	 protected OptionSet() {
 
 	}
 
-	protected OptionSet(String name) {
+	 protected OptionSet(String name) {
 		this.name = name;
 	}
 
@@ -28,7 +28,7 @@ public class OptionSet implements java.io.Serializable {
 	 * @param count
 	 *            = no of options
 	 */
-	protected OptionSet(String name, int count) {
+	protected  OptionSet(String name, int count) {
 		this.name = name;
 		option = new Option[count];
 	}
@@ -103,7 +103,7 @@ public class OptionSet implements java.io.Serializable {
 		if (index >= 0 && index < op.length) {
 			int cost = op[index].getCost();
 			return cost;
-		} else  {
+		} else {
 			return 0;
 		}
 		/**

@@ -1,40 +1,69 @@
-package Cars;
+package cars;
 
+import exception.ExceptionLogging;
+
+
+import exception.FixProblems;
 import Util.ReadSource;
 
-public class TestAutomotive {
-	public static void main(String[] args) {
+public class test {
+	public static void main(String[] args) throws FixProblems {
 		ReadSource rs = new ReadSource();
 		Automotive auto1 = rs
 				.buildAutoObject("X:\\Radha\\car-config\\src\\FordZTW.txt");
-		Automotive auto = new Automotive();
-		Automotive auto11 = new Automotive("Focus Wagon ZTW", 5, 18445);
+		// Automotive auto = new Automotive();
+		// Automotive auto11 = new Automotive("Focus Wagon ZTW", 5, 18445);
 		OptionSet ops = new OptionSet();
 		OptionSet[] optionSet = auto1.getOptionSet();
 		ops.getClass();
 		System.out.println("/n");
 		for (int i = 0; i < optionSet.length; i++) {
-			if (optionSet[i].getName().equals("Color")) {
+			if (optionSet[i].getName().equals("Color".trim())) {
 				// Get OptionSet (by index value) method
 				System.out.println();
 				System.out
 						.println("Get OptionSet (by index value)  method takes the index value as a parameter and returns the optionset in that index if exits ,otherwise returns null ");
-				System.out.println(auto1.getOptionSet(2));
+
+				try {
+					System.out.println(auto1.getOptionSet(-7));
+				} catch (Exception e1) {
+					ExceptionLogging.log();
+					System.out.println("=========================");
+					throw new FixProblems(101);
+				}
 				// Find OptionSet (with name)method
 				System.out.println();
 				System.out.println();
 				System.out
 						.println("Find OptionSet( with name) method takes optionSet name as aparameter and returns optionSet if exits ,oterwise returns null if not exits");
+
 				System.out.println(auto1.findOptionSet("color".trim()));
-				System.out.println(auto1.findOptionSet("Gear"));
+				// try {
+				System.out.println(auto1.findOptionSet("booo"));
+
+				// } catch (Exception e) {
+				// ExceptionLogging.log();
+				// System.out.println("---------------------------------");
+				// throw new FixProblems(101);
+
+				// e.printStackTrace();
+				// }
 				System.out.println();
 				System.out.println();
 				// Find Option with name (in context of OptionSet)
 				System.out
 						.println("Find Option (with name) method takes option name as a parameter and returns option if exists,otherwise returns null if not exists");
 				System.out.println(auto1
-						.findOption("French Blue Clearcoat Metallic"));
-				System.out.println(auto1.findOption("Red"));
+						.findOption("French Blue Clearcoat Metallic".trim()));
+				boolean success = false;
+				while (!success) {
+					try {
+						System.out.println(auto1.findOption("Red"));
+						success = true;
+					} catch (Exception e) {
+						System.out.println("syntax error");
+					}
+				}
 				System.out.println();
 				System.out.println();
 				// setOption(int i, String name, int price): void method in
@@ -58,10 +87,10 @@ public class TestAutomotive {
 				System.out
 						.println(" findOption(String optionname) method takes optionname as parameter and  if it exit returns values oterwise returns null ");
 				ops.getClass();
-				Cars.OptionSet.Option option = auto1
+				cars.OptionSet.Option option = auto1
 						.findOption("CD Silver Clearcoat Metallic".trim());
 				System.out.println("Option Details" + option);
-				Cars.OptionSet.Option option1 = auto1.findOption("phjdhkhf"
+				cars.OptionSet.Option option1 = auto1.findOption("phjdhkhf"
 						.trim());
 				System.out.println("Option Details=" + option1);
 
@@ -70,15 +99,18 @@ public class TestAutomotive {
 				// Find OptionSet with name
 				System.out
 						.println(" findOptionSet(String optionSetname) method takes optionSetname as parameter and  if it exit returns values oterwise returns null ");
-				ops = auto1.findOptionSet("color".trim());
+				
+					ops = auto1.findOptionSet("color".trim());
+				
 				System.out.println("OptionSet details:" + ops.toString());
 				System.out.println();
 				System.out.println();
 				// Update values of Options() find the option and set the values
 				System.out
-						.println("findOptions() method in automotive class takes the option name as a parameter then find it and update ");
-				auto1.updateOption("CD Silver Clearcoat Metallic", "platinum",
-						50);
+						.println("upDateOptions() method in automotive class takes the option name as a parameter then find it and update ");
+				auto1.updateOption(
+						"Fort Knox Gold Clearcoat Metallic".trim(), "platinum",
+						80);
 				System.out.println();
 				System.out.println();
 				// Update values of OptionSet() find the OptionSet and set the
