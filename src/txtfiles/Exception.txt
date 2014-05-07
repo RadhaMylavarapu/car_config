@@ -1,0 +1,10 @@
+101=The system cannot find the path specified
+102=Invalid option
+103=Missing OptionSet data (or part of it)
+104=NumberFormatException
+105=Array is out of range
+106=There is no optionSet with this name
+107=ArrayIndexOutOfBoundsException
+108=Missing price for Automobile option in Text file
+109=There is no data in the model
+110=Invalid price for option

@@ -2,7 +2,6 @@ package client;
 
 import model.Automobile;
 
-import adapter.BuildAuto;
 import exception.ExceptionLogging;
 import exception.FixProblems;
 
@@ -19,22 +18,32 @@ public class Driver1 {
 	public static void main(String[] args) throws FixProblems {
 		ReadSource readSource = new ReadSource();
 		Automobile fordZTW = null;
-		Automobile fordZTW1 = null;
 		String fileName = "X://Rha\\car-config\\src//FordZTW1.txt";
-		int count = 0;
-		while (fordZTW == null) {
+		int i = 0;
+		while (fordZTW == null && i < 2) {
 			// Build Automobile Object from a file.
 			try {
-
+				
 				fordZTW = readSource.buildAutoObject(fileName);
+				i = 2;
+				break;
 			} catch (FixProblems e) {
+				System.out.println(e);
 				ExceptionLogging.log();
-				System.out.println("Enter the correct file Name :" + fileName);
 				fileName = e.fixProblemReadFromConsole();
+				System.out.println(" Enter the correct file Name :" + fileName);
+				i++;
+				System.out.println("\n");
+				
+			} finally {
+				if(i!=2){
+				System.out
+						.println("Sorry!FileName you entered was wrong again.Please check it again........");
+				fileName = "X:\\Radha\\car-config\\src\\txtfiles\\FordZTW1.txt";
+				}
+				System.out.println("\n");
+				System.out.println("\n");
 			}
 		}
 	}
 }
-
-		
-

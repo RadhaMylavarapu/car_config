@@ -1,6 +1,7 @@
 package model.util;
 
 import java.io.BufferedReader;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -8,11 +9,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
-
 import model.Automobile;
-import exception.ExceptionLogging;
 import exception.FixProblems;
 
 public class ReadSource {
@@ -25,11 +23,14 @@ public class ReadSource {
 	 * @return
 	 * @throws FileNotFoundException
 	 * @throws FixProblems
+	 * @throws IOException
+	 * @throws NumberFormatException
 	 */
 	public Automobile buildAutoObject(String filename) throws FixProblems {
-
+		String currentStep = "";
 		try {
 			BufferedReader bufferedReader = null;
+			currentStep = "FILE_READ";
 			bufferedReader = new BufferedReader(new FileReader(filename));
 			String line = null;
 			a = new Automobile("Ford's Wagon ZTW", 5, 18445);
@@ -45,36 +46,30 @@ public class ReadSource {
 				StringTokenizer st = new StringTokenizer(line, ":");
 				String s = st.nextToken();
 				if ((s).equals("keys")) {
+					currentStep = "OPTION SET";
 					optionSetName = st.nextToken();
 					count = Integer.parseInt(st.nextToken().trim());
 					a.setOptionSet(optionSetName, count, optionSetCount);
 					optionSetCount++;
 					optionCount = 0;
 				} else if (!(s).equals("keys")) {
-					cost = Integer.parseInt(st.nextToken().trim());
-					a.setOption(optionSetName, s, cost, optionCount,
-							optionSetCount - 1, count);
-					optionCount++;
-                   
-				}
+					if (optionCount < count) {
+						currentStep = "OPTION PRICE";
+						cost = Integer.parseInt(st.nextToken().trim());
+						a.setOption(optionSetName, s, cost, optionCount,
+								optionSetCount - 1, count);
+						optionCount++;
+					} else {
+						System.out.println("Array out of Bounds");
+					}
 
+				}
 			}
+
 			a.print();
-		} catch (FileNotFoundException ex) {
-			System.out.println("101");
-			throw new FixProblems(101);
-		}// catch (NumberFormatException e) {
-			//System.out.println("102");
-			//throw new FixProblems(102);
-		//}
-		catch (NoSuchElementException e) {
-			System.out.println("==================");
-			throw new FixProblems();
-		}
-		catch (IOException e) {
-			System.out.println("103");
-			ExceptionLogging.log();
-			throw new FixProblems(108);
+		} catch (Exception ex) {
+			throw new FixProblems(ex, currentStep);
+			// throw new FixProblems(101);
 		}
 		return a;
 

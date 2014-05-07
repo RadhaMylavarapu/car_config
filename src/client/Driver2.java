@@ -18,7 +18,7 @@ public class Driver2 {
 		 * instance of BuildAuto class
 		 */
 
-		String fileName = "X:\\Radha\\car-config\\src\\FordZTW.txt";
+		String fileName = "X:\\Radha\\car-config\\src\\txtfiles\\FordZTW.txt";
 		BuildAuto buildAuto = new BuildAuto();
 		buildAuto.buildAuto(fileName);
 

@@ -4,8 +4,6 @@ import java.util.Arrays;
 
 import exception.FixProblems;
 
-
-
 /**
  * 
  * @author Radha class OptionSet Innerclass Option
@@ -185,4 +183,3 @@ public class OptionSet implements java.io.Serializable {
 	}
 
 }
-

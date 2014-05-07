@@ -1,8 +1,6 @@
 package adapter;
 
-
 import exception.FixProblems;
-
 import model.Automobile;
 import model.util.ReadSource;
 
@@ -18,11 +16,11 @@ public abstract class ProxyAutomobile {
 	}
 
 	public void printAuto(String modelName) throws FixProblems {
-		
-			automobile.printAuto(modelName);
-			modelName=automobile.getName();
-			System.out.println(modelName);
-		
+
+		automobile.printAuto(modelName);
+		modelName = automobile.getName();
+		System.out.println(modelName);
+
 	}
 
 	public void updateOptionSetName(String modelName, String optionSetName,

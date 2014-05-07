@@ -2,13 +2,11 @@ package Util;
 
 import java.io.*;
 
-
 import java.util.StringTokenizer;
 
 import cars.Automotive;
 
 import exception.FixProblems;
-
 
 public class ReadSource {
 	Automotive a = null;

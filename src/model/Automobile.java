@@ -46,7 +46,7 @@ public class Automobile implements java.io.Serializable {
 		if (j < opSet.length - 1 && j >= 0) {
 			return opSet[j];
 		} else {
-			throw new FixProblems(102);
+			throw new FixProblems(107);
 		}
 
 	}
@@ -69,7 +69,6 @@ public class Automobile implements java.io.Serializable {
 
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new FixProblems(101);
 		}
@@ -97,11 +96,13 @@ public class Automobile implements java.io.Serializable {
 					System.out.println(optionSet.getName());
 					return option;
 				}
-			}
-		}
-
+				}
+				}
+			
 		throw new FixProblems(102);
-	}
+		}
+        
+		
 
 	public void setName(String name) {
 		this.name = name;
@@ -253,6 +254,10 @@ public class Automobile implements java.io.Serializable {
 						.println("------------------------------------------------------------------------------------------------------");
 				OptionSet optionSet = null;
 				optionSet = opSet[i];
+				if (opSet[i] == null) {
+					System.out.println("no optionSet at" + i);
+					continue;
+				}
 
 				System.out.printf("%23S %70s \n", optionSet.getName(), " cost");
 				System.out.printf("%23s %70s \n", "-------------------------",
@@ -270,7 +275,6 @@ public class Automobile implements java.io.Serializable {
 				}
 			}
 		} catch (FixProblems e) {
-			// TODO Auto-generated catch block
 			throw new FixProblems(106);
 		}
 	}
@@ -289,22 +293,22 @@ public class Automobile implements java.io.Serializable {
 					.println("------------------------------------------------------------------------------------------------------");
 			OptionSet optionSet = opSet[i];
 
-				System.out.printf("%23S %70s \n", optionSet.getName(), " cost");
+			System.out.printf("%23S %70s \n", optionSet.getName(), " cost");
 
-				System.out.printf("%23s %70s \n", "-------------------------",
-						"--------");
-				Option[] op = optionSet.getOptions();
-				for (int j = 0; j < op.length; j++) {
-					Option option = op[j];
-					if (option == null) {
-						System.out.println("no option at " + j);
-						continue;
-					}
-					System.out.printf("%-33s%61d \n", option.getName(),
-							option.getCost());
-
+			System.out.printf("%23s %70s \n", "-------------------------",
+					"--------");
+			Option[] op = optionSet.getOptions();
+			for (int j = 0; j < op.length; j++) {
+				Option option = op[j];
+				if (option == null) {
+					System.out.println("no option at " + j);
+					continue;
 				}
-			
+				System.out.printf("%-33s%61d \n", option.getName(),
+						option.getCost());
+
+			}
+
 		}
 	}
 
